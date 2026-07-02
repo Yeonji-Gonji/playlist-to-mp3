@@ -1,5 +1,7 @@
 # Playlist → MP3
 
+![Playlist → MP3](docs/hero.png)
+
 YouTube 플레이리스트(또는 단일 영상) URL을 넣으면 각 항목을 **`가수 - 제목.mp3`** 로
 변환해 저장하는 크로스 플랫폼(macOS · Windows · Linux) GUI 앱. 태그(아티스트/제목/앨범)와
 앨범아트(원본 비율)를 파일에 임베드합니다.
