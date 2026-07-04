@@ -12,12 +12,12 @@ YouTube 플레이리스트(또는 단일 영상) URL을 넣으면 각 항목을 
 
 **macOS / Linux**
 ```sh
-curl -LsSf https://raw.githubusercontent.com/MODAC0/playlist-to-mp3/main/install.sh | sh
+curl -LsSf https://raw.githubusercontent.com/Yeonji-Gonji/playlist-to-mp3/main/install.sh | sh
 ```
 
 **Windows (PowerShell)**
 ```powershell
-irm https://raw.githubusercontent.com/MODAC0/playlist-to-mp3/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Yeonji-Gonji/playlist-to-mp3/main/install.ps1 | iex
 ```
 
 설치 후 새 터미널에서 실행:
@@ -27,7 +27,7 @@ playlist-to-mp3
 
 ### 수동 설치 (uv가 이미 있는 경우)
 ```sh
-uv tool install git+https://github.com/MODAC0/playlist-to-mp3
+uv tool install git+https://github.com/Yeonji-Gonji/playlist-to-mp3
 ```
 업데이트: `uv tool upgrade playlist-to-mp3`
 
