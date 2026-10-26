@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "playlist-to-mp3"
-version = "1.0.0"
+version = "1.0.1"
 description = "유튜브 플레이리스트를 태그·앨범아트가 담긴 MP3로 저장하는 크로스 OS GUI 앱"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -23,7 +23,5 @@ playlist-to-mp3 = "playlist_to_mp3.app:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["playlist_to_mp3"]
-
-# 폰트(.ttf)를 휠에 포함
-[tool.hatch.build.targets.wheel.force-include]
-"playlist_to_mp3/fonts" = "playlist_to_mp3/fonts"
+# 폰트(playlist_to_mp3/fonts/*.ttf)는 패키지 폴더 안에 있어 packages 지정만으로 휠에 들어간다.
+# force-include 로 같은 경로를 또 넣으면 최신 hatchling 이 "second file … same path" 로 빌드를 거부한다(2026-10-26 설치 장애 원인).

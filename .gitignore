@@ -3,3 +3,5 @@
 /build
 /vendor/ffmpeg
 /vendor/ffprobe
+__pycache__/
+*.pyc
