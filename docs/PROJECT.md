@@ -28,7 +28,7 @@ YouTube 플레이리스트(또는 단일 영상) URL 을 넣으면 각 항목을
 
 ## 배포 · 환경 구조 (고정 규칙 및 함정)
 
-- **배포 방식**: 별도 릴리스 없이 main 브랜치가 곧 설치 소스다. `uv tool upgrade playlist-to-mp3` 가 main 최신을 받으므로
+- **배포 방식**: 기본 설치 경로(`uv tool install git+…`, `install.sh`·`install.ps1`)는 main 브랜치가 곧 설치 소스다. 별도로 GitHub Release `v1.0.0`(2026-06-22)에 macOS universal `.app` 번들이 있다(PyInstaller, 미서명). 태그: `v1.0.0`(06-22), `v1.0.1`(10-26 휠 빌드 수정, 릴리스 바이너리 없음). `uv tool upgrade playlist-to-mp3` 가 main 최신을 받으므로
   **main 에 깨진 커밋이 올라가면 모든 사용자의 다음 업그레이드가 깨진다**. 동작 확인 없이 main 에 올리지 않는다.
 - **버전**: `pyproject.toml` 의 `version` 과 `playlist_to_mp3/__init__.py` 의 `__version__` 을 함께 올린다. 머지 후 그 커밋에 `v<버전>` 태그를 단다(설치 기준은 main 유지, 태그는 기록용, 2026-10-26 결정).
 - **운영·검증 함정**
