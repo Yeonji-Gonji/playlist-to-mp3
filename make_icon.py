@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """앱 아이콘 1024x1024 PNG 생성 (Pillow)."""
-import math
 from PIL import Image, ImageDraw, ImageFont
 
 S = 1024
