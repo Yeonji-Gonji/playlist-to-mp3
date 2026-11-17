@@ -59,3 +59,24 @@ uv 배포 대신 더블클릭 아이콘이 필요하면 PyInstaller로 번들할
 uv run --with pyinstaller pyinstaller --noconfirm "Playlist to MP3.spec"
 ```
 결과물: `dist/Playlist to MP3.app`
+
+빌드 전에 macOS용 `ffmpeg`·`ffprobe` 실행 파일을 `vendor/` 에 둡니다. spec 이 이 둘을 번들에 넣고(git 에는 올리지 않음),
+번들 앱은 시스템 PATH 보다 번들 안의 ffmpeg 를 먼저 씁니다. 유료 서명(Apple Developer)은 하지 않으며 기본 배포는 위의 uv 경로입니다.
+
+## 개발·릴리스
+이 앱은 main 브랜치가 곧 설치 소스입니다. `uv tool install git+…`·`install.sh`·`install.ps1`·`uv tool upgrade` 가 모두
+main 최신을 받으므로, main 에 깨진 커밋이 올라가면 모든 사용자의 다음 업그레이드가 깨집니다. main 은 PR 과
+CI(`.github/workflows/ci.yml`: 휠 빌드 → 폰트 포함 확인 → 새 가상환경 설치 → 헤드리스 import) 통과로만 바뀝니다.
+
+- **변경 후 최소 확인**: CI 는 GUI 동작을 보지 않으므로 `uv run playlist-to-mp3` 로 창이 뜨는지, 짧은 공개 영상
+  1개를 변환해 태그·앨범아트가 박히는지 직접 봅니다.
+- **버전 올리기**: `pyproject.toml` 의 `version` 과 `playlist_to_mp3/__init__.py` 의 `__version__` 을 함께 올리고,
+  머지 후 그 커밋에 `v<버전>` 태그를 답니다. 설치 기준은 main 이고 태그는 기록용입니다.
+
+| 경로 | 역할 |
+| --- | --- |
+| `playlist_to_mp3/app.py` | Qt 창(다크·라이트, frameless glass UI). URL 입력 → yt-dlp 다운로드 → mutagen 태그 임베드 |
+| `playlist_to_mp3/ffmpeg_setup.py` | ffmpeg·ffprobe 위치 해석(우선순위는 파일 머리 주석) |
+| `playlist_to_mp3/fonts/` | UI 폰트. 패키지 폴더 안이라 휠에 자동 포함됨(`pyproject.toml` 주석) |
+| `pyproject.toml`, `install.sh`, `install.ps1`, `Playlist to MP3.spec` | uv 설치, 선택적 PyInstaller 번들 |
+| `icon.iconset/`, `icon.icns`, `icon_1024.png`, `make_icon.py` | macOS 아이콘 생성 |
